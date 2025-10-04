@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install -e .
+RUN pip install --upgrade botocore boto3
 RUN python -m unidic download
 RUN python melo/init_downloads.py
 
