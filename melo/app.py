@@ -52,8 +52,8 @@ with gr.Blocks() as demo:
     gr.Markdown('WebUI by [mrfakename](https://twitter.com/realmrfakename).')
 @click.command()
 @click.option('--share', '-s', is_flag=True, show_default=True, default=False, help="Expose a publicly-accessible shared Gradio link usable by anyone with the link. Only share the link with people you trust.")
-@click.option('--host', '-h', default=None)
-@click.option('--port', '-p', type=int, default=None)
+@click.option('--host', '-h', default='0.0.0.0')
+@click.option('--port', '-p', type=int, default=8888)
 def main(share, host, port):
     demo.queue(api_open=False).launch(show_api=False, share=share, server_name=host, server_port=port)
 
