@@ -1,0 +1,19 @@
+services:
+  # MeloTTS 語音合成服務
+  tts-melotts:
+    # 指向 git clone 下來的 MeloTTS 程式碼目錄
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # 指定映像檔名稱，方便之後管理
+    image: melotts-local:latest
+    container_name: tts-melotts
+    ports:
+      # 映射主機埠口到容器內部埠口 8888 (MeloTTS 預設埠口)
+      - "${TTS_PORT:-11439}:8888"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu] # 啟用 GPU 支援
+    restart: always
