@@ -11,4 +11,7 @@ RUN pip install --upgrade botocore boto3
 RUN python -m unidic download
 RUN python melo/init_downloads.py
 
+ENV GRADIO_SERVER_NAME="0.0.0.0"
+ENV GRADIO_SERVER_PORT="8888"
+
 CMD ["python", "./melo/app.py", "--host", "0.0.0.0", "--port", "8888"]

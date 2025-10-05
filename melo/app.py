@@ -55,7 +55,16 @@ with gr.Blocks() as demo:
 @click.option('--host', '-h', default='0.0.0.0')
 @click.option('--port', '-p', type=int, default=8888)
 def main(share, host, port):
-    demo.queue(api_open=False).launch(show_api=False, share=share, server_name=host, server_port=port)
+    # Set Gradio to not check network connectivity in Docker
+    import os
+    os.environ["GRADIO_ANALYTICS_ENABLED"] = "False"
+
+    demo.queue(api_open=False).launch(
+        show_api=False,
+        share=share,
+        server_name=host,
+        server_port=port
+    )
 
 if __name__ == "__main__":
     main()
